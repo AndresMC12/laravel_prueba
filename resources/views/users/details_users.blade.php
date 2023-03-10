@@ -28,7 +28,7 @@
             <th scope="col">Client number</th>
             <th scope="col">Year</th>
             <th scope="col">Mounth</th>
-            <th scope="col">Amount</th>                 {{-- Como se realizo en la plantilla index se realizo una tabla con algunos datos del historial de transacciones del cliente --}}
+            <th scope="col">Amount</th>                
             <th scope="col">Transaction Detail</th>
             <th scope="col">Date Create</th>
         </tr>
@@ -37,12 +37,12 @@
         <tr>
             <?php ?>
             <td>{{$datos->client_id}}</td>
-            <td>{{$datos->year}}</td>            {{--ciclo for para agregar los datos a tabla de historial de transacciones del usuario --}}
+            <td>{{$datos->year}}</td>           
             <td>{{$datos->month}}</td>
             <td>{{$datos->amount }}</td>
             <?php    ?>
             @if($datos->transaction_detail != " ")
-                <td>{{$datos->transaction_detail }}</td> {{--Es metodo hara que en el espacio donde no haya transaccion aparezca un mensaje en rojo mencionando lo anterior --}}
+                <td>{{$datos->transaction_detail }}</td> 
             @else
                 <td class="text-danger"> No tiene transacción </td>
             @endif

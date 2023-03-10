@@ -24,24 +24,23 @@
 </head>
 <body>
     <h1 class="text-center">{{$title}}</h1>
-    
-    <table  class="table">
+    <!-- table variables -->
+    <table class="table">
         <tr>
-            <th class="text-center" scope="col">Usuario</th>                     {{-- Seleccione algunos datos para poder visuzlizarlos en la tabla --}}
+            <th class="text-center" scope="col">Usuario</th>                    
             <th class="text-center" scope="col">Numero de identificacion</th>  
             <th class="text-center" scope="col">Telefono</th>
             <th class="text-center" scope="col">Fecha de nacimiento</th>
             <th class="text-center" scope="col">View Card</th>
         </tr>
-        <?php ?>
         @if($info === null)                                              
         <h1>{{$data}}</h1>              
         @endif
+        <!-- Data for all users -->
         @foreach($info as $datos) 
         <tr>
-            <?php ?>
             <td class="text-center">{{$datos->user_id}}</td>
-            <td class="text-center">{{$datos->identification_number}}</td>         {{-- Asignacion de datos a la tabla en respectiva orden mediante el metodo for --}}
+            <td class="text-center">{{$datos->identification_number}}</td>         
             <td class="text-center">{{$datos->mobile_number}}</td>
             <td class="text-center">{{$datos->created_at }}</td>
             <td class="text-center"> <a class="btn btn-success" href="transactions/{{$datos->user_id}}"> <i class="fa fa-edit"></i> </a> </td> {{-- se le agrego un boton a cada usuario para poder acceder a su historial de transaccion --}}

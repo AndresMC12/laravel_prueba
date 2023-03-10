@@ -18,7 +18,7 @@ use App\Http\Controllers\UsersController;
 //     return view('welcome');
 // });
 
-// Estas son las rutas creadar para dirijir al usuario al index y al historial de transacciones.
+// These are the routes created to direct the user to the index and the transaction history.
 Route::controller(UsersController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('transactions/{id}', 'showDetails');

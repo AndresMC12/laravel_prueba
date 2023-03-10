@@ -10,8 +10,8 @@ use Carbon\Carbon;
 class UsersController extends BaseController
 {
     //Creacion de controladores: 
-    // se crearon dos controladores los cuales obtendran la informacion de una base datos dada por la api conectados.
-    //el controlador index tendra el control en el acceso con un token y se el que enviara al codigo index los datos de diversos usuarios y mostrarlos en la tabla.
+    //Se crearon dos controladores los cuales obtendran la informacion de una base datos dada por la api conectados.
+    //El controlador index tendra el control en el acceso con un token y se el que enviara al codigo index los datos de diversos usuarios y mostrarlos en la tabla.
     public function index(){
         $data['title'] = 'Test';
         $data['info'] = [];
@@ -22,8 +22,10 @@ class UsersController extends BaseController
             'base_uri' => 'https://test.conectadosweb.com.co'
         ]);
         try {
-            $response = $client->request('GET', "/users/{$token}");          //El control de errores,  esta seccion de codigo obtiene la informacion de la base de datos siempre y cuando el token este en la url
-            $data['info'] = json_decode($response->getBody()->getContents());//de lo contrario arrojara el error de token incorrecto.
+            //El control de errores,  esta seccion de codigo obtiene la informacion de la base de datos siempre y cuando el token este en la url
+            $response = $client->request('GET', "/users/{$token}");          
+            //De lo contrario arrojara el error de token incorrecto.
+            $data['info'] = json_decode($response->getBody()->getContents());
         } catch (\Throwable $th) {
             $response = [
                 'statusCode' => 401,
@@ -32,9 +34,10 @@ class UsersController extends BaseController
             ];
         }
         // dd($response['userMessage']);
-        return view('users.index',$data);                                    //El envio de datos genericos de cada uno de los usuarios a la vista web
+        //El envio de datos genericos de cada uno de los usuarios a la vista web
+        return view('users.index',$data);
     }
-    // El segundo controlador redirecciona a cualquier usuario al historial de transacciones con client_id
+    //El segundo controlador redirecciona a cualquier usuario al historial de transacciones con client_id
     public function showDetails($client_id){
         $data['title_card'] = 'Users Details';
         $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJ0ZXN0IjozMjE0MTIsInVzZXIiOiJmM3IyIn0NcPLPRLSvfszQwtxZLyypsm3Y56ELRdppqYXDv2Hagk';
@@ -43,7 +46,8 @@ class UsersController extends BaseController
         ]);
         
         $response = $client->request('GET', "users/{$token}/transaction/{$client_id}"); 
-        $data['details_urs'] = json_decode($response->getBody()->getContents());   //configuracion de la respuesta en la url que redireccionar al historial de transaccion del usuario
+        //configuracion de la respuesta en la url que redireccionar al historial de transaccion del usuario
+        $data['details_urs'] = json_decode($response->getBody()->getContents()); 
         // dd($data['details_urs']);
         return view('users.details_users',$data);
     }
